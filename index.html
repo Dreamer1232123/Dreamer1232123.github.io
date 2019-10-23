@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Fred Fang">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Dreamer&#39;s blog"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Dreamer&#39;s blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Dreamer&#39;s blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+            <h1 id="main-title" class="title">Dreamer's blog</h1>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2019/10/21/Project-Summary/">
+                Project-Summary
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-10-21</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="Heart-Disease-Prediction-Comparing-Different-Machine-Learning-Methods"><a href="#Heart-Disease-Prediction-Comparing-Different-Machine-Learning-Methods" class="headerlink" title="Heart Disease Prediction Comparing Different Machine Learning Methods"></a>Heart Disease Prediction Comparing Different Machine Learning Methods</h2><h3 id="What-is-the-Data"><a href="#What-is-the-Data" class="headerlink" title="What is the Data"></a>What is the Data</h3><p>This database contains 76 attributes, but all published experiments refer to using a subset of 14 of them. In particular, the Cleveland database is the only one that has been used by ML researchers to this date. The “goal” field refers to the presence of heart disease in the patient. It is integer valued from 0 (no presence) to 4. Experiments with the Cleveland database have concentrated on simply attempting to distinguish presence (values 1,2,3,4) from absence (value 0).</p>
+<p>The names and social security numbers of the patients were recently removed from the database, replaced with dummy values.</p>
+<p>One file has been “processed”, that one containing the Cleveland database. All four unprocessed files also exist in this directory.</p>
+<p>To see Test Costs (donated by Peter Turney), please see the folder “Costs”</p>
+<p>(<a href="https://archive.ics.uci.edu/ml/datasets/heart+Disease" target="_blank" rel="noopener">https://archive.ics.uci.edu/ml/datasets/heart+Disease</a>)</p>
+<h3 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h3><h4 id="Load-packages"><a href="#Load-packages" class="headerlink" title="Load packages"></a>Load packages</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!require(<span class="string">"tree"</span>))&#123;</span><br><span class="line">  install.packages(c(<span class="string">"tree"</span>, <span class="string">"caTools"</span>, <span class="string">"glmnet"</span>, <span class="string">"ggplot2"</span>, <span class="string">"randomForest"</span>, <span class="string">'tidyverse'</span> ))</span><br><span class="line">&#125;</span><br><span class="line">library(tree)</span><br><span class="line">library(caTools)</span><br><span class="line">library(glmnet)</span><br><span class="line">library(tidyverse)</span><br><span class="line">library(randomForest)</span><br><span class="line">library(tableone)</span><br><span class="line">library(knitr)</span><br><span class="line">library(kableExtra)</span><br><span class="line">library(data.table)</span><br><span class="line"></span><br><span class="line">set.seed(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Read-the-Data-from-csv-File"><a href="#Read-the-Data-from-csv-File" class="headerlink" title="Read the Data from csv File"></a>Read the Data from csv File</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dat.HD = read.csv(<span class="string">'/Users/hanchao/Library/Mobile Documents/com~apple~CloudDocs/Works/Embark/HD/data2.csv'</span>, sep = <span class="string">','</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Data-Wrangling"><a href="#Data-Wrangling" class="headerlink" title="Data Wrangling"></a>Data Wrangling</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dat.HD = dat.HD[,<span class="number">2</span>:ncol(dat.HD)]</span><br><span class="line"></span><br><span class="line">dat.HD$num = ifelse(dat.HD$num == <span class="number">0</span>, yes = <span class="number">0</span>, no = <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> names(dat.HD)) &#123;</span><br><span class="line">  <span class="keyword">if</span>( mean(dat.HD[,i]) &lt; <span class="number">5</span> )&#123;</span><br><span class="line">    dat.HD[,i] &lt;- <span class="keyword">as</span>.factor(dat.HD[,i])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Demographic-Analysis"><a href="#Demographic-Analysis" class="headerlink" title="Demographic Analysis"></a>Demographic Analysis</h3><h4 id="Data-Visualization"><a href="#Data-Visualization" class="headerlink" title="Data Visualization"></a>Data Visualization</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">par(mfrow = c(<span class="number">3</span>,<span class="number">2</span>))</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> names(dat.HD[,<span class="number">-1</span>])) &#123;</span><br><span class="line">  <span class="keyword">if</span>( <span class="keyword">is</span>.numeric(dat.HD[,i]) )&#123;</span><br><span class="line">    hist(dat.HD[,i], main = i, xlab = i)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/21/Project-Summary/1.png" alt="1"></p>
+<h4 id="Demographic-Table"><a href="#Demographic-Table" class="headerlink" title="Demographic Table"></a>Demographic Table</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CreateTableOne(data = dat.HD[,<span class="number">-1</span>], strata = <span class="string">'num'</span>) %&gt;%</span><br><span class="line">  print(nonnormal = c('chol', 'com', 'cday',  'cyr')) -&gt; tblprint2</span><br><span class="line">tblprint2[,<span class="number">4</span>][tblprint2[,<span class="number">4</span>] == <span class="string">'nonnorm'</span>] &lt;- <span class="string">'Wilcoxom'</span></span><br><span class="line"></span><br><span class="line">tblprint2 &lt;- tblprint2[,<span class="number">-4</span>]</span><br><span class="line">colnames(tblprint2) &lt;- c(<span class="string">'With Heart Disease'</span>, <span class="string">'Without Heart Disease'</span>, <span class="string">'P-value'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kable(tblprint2, <span class="string">"html"</span>, caption = <span class="string">"Stritified by Having Heart Disease or Not"</span>, booktabs = T) %&gt;%</span><br><span class="line">  kable_styling(<span class="string">'responsive'</span>) %&gt;%</span><br><span class="line">  add_indent(c(<span class="number">5</span>:<span class="number">8</span>,<span class="number">12</span>:<span class="number">14</span>,<span class="number">20</span>:<span class="number">23</span>, <span class="number">25</span>:<span class="number">31</span>,<span class="number">33</span>:<span class="number">40</span>,<span class="number">42</span>:<span class="number">49</span>, <span class="number">51</span>:<span class="number">56</span>))</span><br></pre></td></tr></table></figure>
+
+<p>Stritified by Having Heart Disease or Not</p>
+<table>
+<thead>
+<tr>
+<th>/</th>
+<th>With Heart Disease</th>
+<th>Without Heart Disease</th>
+<th>P-value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n</td>
+<td>376</td>
+<td>439</td>
+<td></td>
+</tr>
+<tr>
+<td>age (mean (sd))</td>
+<td>50.66 (9.49)</td>
+<td>55.97 (8.71)</td>
+<td>&lt;0.001</td>
+</tr>
+<tr>
+<td>sex = 1 (%)</td>
+<td>240 ( 63.8)</td>
+<td>397 ( 90.4)</td>
+<td>&lt;0.001</td>
+</tr>
+<tr>
+<td>cp (%)</td>
+<td>&lt;0.001</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>26 ( 6.9)</td>
+<td>17 ( 3.9)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>133 ( 35.4)</td>
+<td>21 ( 4.8)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>119 ( 31.6)</td>
+<td>66 ( 15.0)</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>98 ( 26.1)</td>
+<td>335 ( 76.3)</td>
+<td></td>
+</tr>
+<tr>
+<td>htn = 1 (%)</td>
+<td>165 ( 43.9)</td>
+<td>227 ( 51.7)</td>
+<td>0.031</td>
+</tr>
+<tr>
+<td>chol (median [IQR])</td>
+<td>230.50 [201.00, 269.25]</td>
+<td>225.00 [0.00, 272.50]</td>
+<td>0.006</td>
+</tr>
+<tr>
+<td>restecg (%)</td>
+<td>0.005</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>240 ( 63.8)</td>
+<td>241 ( 54.9)</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>56 ( 14.9)</td>
+<td>104 ( 23.7)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>80 ( 21.3)</td>
+<td>94 ( 21.4)</td>
+<td></td>
+</tr>
+<tr>
+<td>cmo (mean (sd))</td>
+<td>6.19 (3.45)</td>
+<td>6.20 (3.47)</td>
+<td>0.987</td>
+</tr>
+<tr>
+<td>cday (median [IQR])</td>
+<td>16.00 [8.00, 23.00]</td>
+<td>16.00 [8.00, 24.00]</td>
+<td>0.931</td>
+</tr>
+<tr>
+<td>cyr (median [IQR])</td>
+<td>84.00 [83.00, 85.00]</td>
+<td>84.00 [83.00, 85.00]</td>
+<td>0.112</td>
+</tr>
+<tr>
+<td>num = 1 (%)</td>
+<td>0 ( 0.0)</td>
+<td>439 (100.0)</td>
+<td>&lt;0.001</td>
+</tr>
+<tr>
+<td>lvx (%)</td>
+<td>0.159</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>376 (100.0)</td>
+<td>433 ( 98.6)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0 ( 0.0)</td>
+<td>4 ( 0.9)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>lvx.1 (%)</td>
+<td>0.417</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>375 ( 99.7)</td>
+<td>431 ( 98.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0 ( 0.0)</td>
+<td>3 ( 0.7)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>1 ( 0.3)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>lvx.2 (%)</td>
+<td>0.001</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>374 ( 99.5)</td>
+<td>406 ( 92.5)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0 ( 0.0)</td>
+<td>6 ( 1.4)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0 ( 0.0)</td>
+<td>8 ( 1.8)</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>1 ( 0.3)</td>
+<td>4 ( 0.9)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1 ( 0.3)</td>
+<td>11 ( 2.5)</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>0 ( 0.0)</td>
+<td>2 ( 0.5)</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>lvx.3 (%)</td>
+<td>&lt;0.001</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>371 ( 98.7)</td>
+<td>340 ( 77.4)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0 ( 0.0)</td>
+<td>3 ( 0.7)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>2 ( 0.5)</td>
+<td>14 ( 3.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>0 ( 0.0)</td>
+<td>5 ( 1.1)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>1 ( 0.3)</td>
+<td>17 ( 3.9)</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>0 ( 0.0)</td>
+<td>3 ( 0.7)</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>1 ( 0.3)</td>
+<td>47 ( 10.7)</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>1 ( 0.3)</td>
+<td>10 ( 2.3)</td>
+<td></td>
+</tr>
+<tr>
+<td>lvf (%)</td>
+<td>&lt;0.001</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>0</td>
+<td>0 ( 0.0)</td>
+<td>2 ( 0.5)</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>354 ( 94.1)</td>
+<td>353 ( 80.4)</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>17 ( 4.5)</td>
+<td>61 ( 13.9)</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3 ( 0.8)</td>
+<td>16 ( 3.6)</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>2 ( 0.5)</td>
+<td>6 ( 1.4)</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>0 ( 0.0)</td>
+<td>1 ( 0.2)</td>
+<td></td>
+</tr>
+<tr>
+<td>name = 1 (%)</td>
+<td>376 (100.0)</td>
+<td>439 (100.0)</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+<p>both histograms plotting age with or without HD are relatively normal so we can use a t-test to calculate the correlation between age and HD.</p>
+<p>the p-value, 6.652e-16 is much smaller than a significance level of 0.05. this means that we will be able to reject the null hypothesis, which states that the difference in the mean age of people with and without HD is 0.</p>
+<p>since sex is a factor represented by numbers, we will use a chi-squared test. with a p-value of &lt; 2.2e-16, we can reject the null hypothesis that there is no statistically significant difference between sex and HD.</p>
+<p>since cp is a factor, we will use a chi-squared test. with a p-value of &lt; 2.2e-16, we can reject the null hypothesis that there is no statistically significant difference between the level cp and HD.</p>
+<p>since htn is a factor, we will use a chi-squared test. with a p-value of 0.03088, we can reject the null hypothesis that there is no statistically significant difference between the presence of htn and HD. however, a p-value of 0.03088 is relatively close to our decided significance level of 0.05.</p>
+<p>Because the second distribution is heavily right skewed, we will use a wilcox test. with a p-value of 0.005524, we can reject the null hypothesis that the true location shift between the two data sets is equal to 0.</p>
+<p>since restecg is a factor, we will use a chi-squared test with a p-value of 0.004695, we can reject the null hypothesis, which states that there is no statistically significant difference between levels of resting ECG and HD.</p>
+<p>because both distributions are right skewed, we will use a wilcox test. with a p-value of 0.9662, we will fail to reject the null hypothesis, which states that the true location shift between the two datasets is equal to 0.</p>
+<p>because both distributions don’t follow a normal distribution, where we would use a t-test, we will use a wilcox test. with a p-value of 0.9307, we will fail to reject the null hypothesis, which states that the true location shift between the two datasets is equal to 0.</p>
+<p>because both distributions are normal, we will be able to use a t-test to compare the data. with a p-value of 0.1216, we will fail to reject the null hypothesis that states that the difference between the means of the datasets is equal to 0.</p>
+<p>since lvx is a factor, we will use a chi-squared test. with a p-value of 0.1593, we will fail to reject the null hypothesis, which states that there is no statistically significant difference between the levels of lvx and HD.</p>
+<p>since lvx.1 is a factor, we will use a chi-squared test. with a p-value of 0.4168, we will fail to reject the null hypothesis, which states that there is no statistically significant difference between the levels of lvx and HD.</p>
+<p>since lvx.2 is a factor, we will use a chi-squared test. with a p-value of 0.0008492, we will reject the null hypothesis, which states that there is no statistically significant difference between the levels of lvx and HD.</p>
+<p>since lvx.3 is a factor, we will use a chi-squared test. with a p-value of 3.974e-15, we will be able to reject the null hypothesis, which states that there is no statistically significant difference between the levels of lvx and HD.</p>
+<h3 id="Compare-Prediction-Models-Using-Cross-Validation-Error"><a href="#Compare-Prediction-Models-Using-Cross-Validation-Error" class="headerlink" title="Compare Prediction Models Using Cross Validation Error"></a>Compare Prediction Models Using Cross Validation Error</h3><h4 id="Lasso-Regression-and-Ridge-Regression"><a href="#Lasso-Regression-and-Ridge-Regression" class="headerlink" title="Lasso Regression and Ridge Regression"></a>Lasso Regression and Ridge Regression</h4><h5 id="Lasso"><a href="#Lasso" class="headerlink" title="Lasso"></a>Lasso</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lasso regression error rate calculation</span></span><br><span class="line">x = model.matrix(num ~ ., data=dat.HD[,-c(<span class="number">1</span>,ncol(dat.HD))])</span><br><span class="line"></span><br><span class="line">lasso &lt;- glmnet(x = x, y = dat.HD$num, alpha = <span class="number">1</span>, <span class="keyword">lambda</span> = <span class="number">0.09</span>, family = <span class="string">"binomial"</span>, standardize = TRUE)</span><br><span class="line"></span><br><span class="line">index = sample(nrow(dat.HD), nrow(dat.HD), replace = FALSE)</span><br><span class="line"><span class="comment"># takes a random sample of the whole data (shuffles it around)</span></span><br><span class="line">shuffledData &lt;- dat.HD[index,]</span><br><span class="line">dataSet &lt;- split(shuffledData, rep(<span class="number">1</span>:<span class="number">10</span>, each = nrow(dat.HD)/<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Warning in split.default(x = seq_len(nrow(x)), f = f, drop = drop, ...):</span></span><br><span class="line"><span class="comment">## data length is not a multiple of split variable</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># splits data into 10 random samples</span></span><br><span class="line"><span class="comment"># dataSet[[1]]</span></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line">vector1 = NULL</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line">&#123;</span><br><span class="line">  validation &lt;- dataSet[[i]]</span><br><span class="line"><span class="comment"># saves one sample as a validation set</span></span><br><span class="line">  training &lt;- dataSet[-i]</span><br><span class="line"><span class="comment"># 9 other samples = training sets</span></span><br><span class="line">  trainingFrame &lt;- do.call(rbind, training)</span><br><span class="line"><span class="comment"># trainingFrame = all training sets</span></span><br><span class="line">  lasso &lt;- glmnet(x = model.matrix(num ~ ., data=trainingFrame[,-c(<span class="number">1</span>,ncol(trainingFrame))]), y = trainingFrame$num, alpha = <span class="number">1</span>, <span class="keyword">lambda</span> = <span class="number">0.09</span>, family = <span class="string">"binomial"</span>, standardize = TRUE)</span><br><span class="line"><span class="comment"># help("predict.glmnet")</span></span><br><span class="line">  predicted &lt;- predict.glmnet(lasso, newx = model.matrix(num ~ ., data=validation[,-c(<span class="number">1</span>,ncol(validation))]), s = NULL, type = <span class="string">"class"</span>)</span><br><span class="line">  vector1[i] = (mean(predicted))</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findLambda &lt;- function(j = <span class="string">"number of folds"</span>, k = <span class="string">"lambda"</span>)&#123;</span><br><span class="line">  <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:j)</span><br><span class="line">&#123;</span><br><span class="line">  validation &lt;- dataSet[[i]]</span><br><span class="line"><span class="comment"># saves one sample as a validation set</span></span><br><span class="line">  training &lt;- dataSet[-i]</span><br><span class="line"><span class="comment"># 9 other samples = training sets</span></span><br><span class="line">  trainingFrame &lt;- do.call(rbind, training)</span><br><span class="line"><span class="comment"># trainingFrame = all training sets</span></span><br><span class="line">  ridge &lt;- glmnet(x = model.matrix(num ~ ., data=trainingFrame[,-c(<span class="number">1</span>,ncol(trainingFrame))]), y = trainingFrame$num, alpha = <span class="number">0</span>, <span class="keyword">lambda</span> = k, family = <span class="string">"binomial"</span>, standardize = TRUE)</span><br><span class="line"><span class="comment"># help("predict.glmnet")</span></span><br><span class="line">  predicted &lt;- predict.glmnet(ridge, newx = model.matrix(num ~ ., data=validation[,-c(<span class="number">1</span>,ncol(validation))]), s = NULL, type = <span class="string">"class"</span>)</span><br><span class="line">  vector1[i] = (mean(predicted))</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">  mean(vector1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector2 = NULL</span><br><span class="line"><span class="keyword">for</span>(k <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>)&#123;</span><br><span class="line">findLambda(j = <span class="number">10</span>, seq(<span class="number">0</span>, <span class="number">2</span>, by = <span class="number">0.01</span>)[k])</span><br><span class="line">vector2[k] &lt;- (findLambda(j = <span class="number">10</span>, k))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plot(x = seq(<span class="number">0</span>, <span class="number">2</span>, by = <span class="number">0.01</span>)[<span class="number">1</span>:<span class="number">100</span>], y = vector2, type = <span class="string">"l"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/10/21/Project-Summary/2.png" alt="2"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># plot of lambda against cv error rate</span></span><br><span class="line"></span><br><span class="line">seq(<span class="number">0</span>,<span class="number">2</span>,by = <span class="number">0.01</span>)[which.min(vector2)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## [1] 0.09</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># best lambda for lasso regression</span></span><br><span class="line"></span><br><span class="line">mean(vector1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## [1] 0.169778</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cv error rate for when best lambda is used</span></span><br></pre></td></tr></table></figure>
+<h5 id="Ridge-Regression"><a href="#Ridge-Regression" class="headerlink" title="Ridge Regression"></a>Ridge Regression</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ridge regression error rate calculation</span></span><br><span class="line">x = model.matrix(num ~ ., data=dat.HD[,-c(<span class="number">1</span>,ncol(dat.HD))])</span><br><span class="line"></span><br><span class="line">ridge &lt;- glmnet(x = x, y = dat.HD$num, alpha = <span class="number">0</span>, <span class="keyword">lambda</span> = <span class="number">8</span>, family = <span class="string">"binomial"</span>, standardize = TRUE)</span><br><span class="line"></span><br><span class="line">index = sample(nrow(dat.HD), nrow(dat.HD), replace = FALSE)</span><br><span class="line"><span class="comment"># takes a random sample of the whole data (shuffles it around)</span></span><br><span class="line">shuffledData &lt;- dat.HD[index,]</span><br><span class="line">dataSet &lt;- split(shuffledData, rep(<span class="number">1</span>:<span class="number">10</span>, each = nrow(dat.HD)/<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Warning in split.default(x = seq_len(nrow(x)), f = f, drop = drop, ...):</span></span><br><span class="line"><span class="comment">## data length is not a multiple of split variable</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># splits data into 10 random samples</span></span><br><span class="line"><span class="comment"># dataSet[[1]]</span></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line">vector1 = NULL</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line">&#123;</span><br><span class="line">  validation &lt;- dataSet[[i]]</span><br><span class="line"><span class="comment"># saves one sample as a validation set</span></span><br><span class="line">  training &lt;- dataSet[-i]</span><br><span class="line"><span class="comment"># 9 other samples = training sets</span></span><br><span class="line">  trainingFrame &lt;- do.call(rbind, training)</span><br><span class="line"><span class="comment"># trainingFrame = all training sets</span></span><br><span class="line">  ridge &lt;- glmnet(x = model.matrix(num ~ ., data=trainingFrame[,-c(<span class="number">1</span>,ncol(trainingFrame))]), y = trainingFrame$num, alpha = <span class="number">0</span>, <span class="keyword">lambda</span> = <span class="number">8</span>, family = <span class="string">"binomial"</span>, standardize = TRUE)</span><br><span class="line"><span class="comment"># help("predict.glmnet")</span></span><br><span class="line">  predicted &lt;- predict.glmnet(ridge, newx = model.matrix(num ~ ., data=validation[,-c(<span class="number">1</span>,ncol(validation))]), s = NULL, type = <span class="string">"class"</span>)</span><br><span class="line">  vector1[i] = (mean(predicted))</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">findLambda &lt;- function(j = <span class="string">"number of folds"</span>, k = <span class="string">"lambda"</span>)&#123;</span><br><span class="line">  <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:j)</span><br><span class="line">&#123;</span><br><span class="line">  validation &lt;- dataSet[[i]]</span><br><span class="line"><span class="comment"># saves one sample as a validation set</span></span><br><span class="line">  training &lt;- dataSet[-i]</span><br><span class="line"><span class="comment"># 9 other samples = training sets</span></span><br><span class="line">  trainingFrame &lt;- do.call(rbind, training)</span><br><span class="line"><span class="comment"># trainingFrame = all training sets</span></span><br><span class="line">  ridge &lt;- glmnet(x = model.matrix(num ~ ., data=trainingFrame[,-c(<span class="number">1</span>,ncol(trainingFrame))]), y = trainingFrame$num, alpha = <span class="number">0</span>, <span class="keyword">lambda</span> = k, family = <span class="string">"binomial"</span>, standardize = TRUE)</span><br><span class="line"><span class="comment"># help("predict.glmnet")</span></span><br><span class="line">  predicted &lt;- predict.glmnet(ridge, newx = model.matrix(num ~ ., data=validation[,-c(<span class="number">1</span>,ncol(validation))]), s = NULL, type = <span class="string">"class"</span>)</span><br><span class="line">  vector1[i] = (mean(predicted))</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">  mean(vector1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector2 = NULL</span><br><span class="line"><span class="keyword">for</span>(k <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>)&#123;</span><br><span class="line">findLambda(j = <span class="number">10</span>, seq(<span class="number">0</span>, <span class="number">100</span>, by = <span class="number">1</span>)[k])</span><br><span class="line">vector2[k] &lt;- (findLambda(j = <span class="number">10</span>, k))</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">mean(vector1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## [1] 0.1546837</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cv error rate for ridge regression when best lambda is used</span></span><br><span class="line"></span><br><span class="line">seq(<span class="number">0</span>, <span class="number">100</span>, by = <span class="number">1</span>)[which.min(vector2)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## [1] 8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># best lambda</span></span><br><span class="line"></span><br><span class="line">plot(x = seq(<span class="number">0</span>, <span class="number">100</span>, by = <span class="number">1</span>)[<span class="number">1</span>:<span class="number">100</span>], y = vector2, type = <span class="string">"l"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/21/Project-Summary/3.png" alt="3"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># plot lambda against cv error rate</span></span><br></pre></td></tr></table></figure>
+<h3 id="Classification-Tree-and-Random-Forest"><a href="#Classification-Tree-and-Random-Forest" class="headerlink" title="Classification Tree and Random Forest"></a>Classification Tree and Random Forest</h3><h4 id="Classification-Tree"><a href="#Classification-Tree" class="headerlink" title="Classification Tree"></a>Classification Tree</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># classification tree error rate calculation</span></span><br><span class="line">treeHD &lt;- tree(num ~ ., data = dat.HD[,-c(<span class="number">1</span>,ncol(dat.HD))])</span><br><span class="line">summary(treeHD)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Classification tree:</span><br><span class="line">## tree(formula = num ~ ., data = dat.HD[, -c(1, ncol(dat.HD))])</span><br><span class="line">## Variables actually used in tree construction:</span><br><span class="line">## [1] &quot;cp&quot;    &quot;chol&quot;  &quot;age&quot;   &quot;lvx.3&quot; &quot;sex&quot;  </span><br><span class="line">## Number of terminal nodes:  9 </span><br><span class="line">## Residual mean deviance:  0.8874 = 715.2 / 806 </span><br><span class="line">## Misclassification error rate: 0.1988 = 162 / 815</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cvTreeHD &lt;- cv.tree(treeHD, FUN = prune.tree, method = &quot;misclass&quot;)</span><br><span class="line">cvTreeHD$size[which.min(cvTreeHD$dev)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">par(mfrow = c(1,2))</span><br><span class="line">plot(treeHD)</span><br><span class="line">text(treeHD)</span><br><span class="line">plot(cvTreeHD$size, cvTreeHD$dev, type = &quot;b&quot;)</span><br><span class="line">points(cvTreeHD$size[which.min(cvTreeHD$dev)], min(cvTreeHD$dev), col = &quot;RED&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/10/21/Project-Summary/4.png" alt="4"></p>
+<h4 id="Random-Forest"><a href="#Random-Forest" class="headerlink" title="Random Forest"></a>Random Forest</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#random forest error rate calculation</span><br><span class="line"></span><br><span class="line">randForest &lt;- randomForest(dat.HD$num ~ . - dat.HD$id - dat.HD$name - dat.HD$num, data = dat.HD, proximity=TRUE)</span><br><span class="line">randForest</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">##  randomForest(formula = dat.HD$num ~ . - dat.HD$id - dat.HD$name -      dat.HD$num, data = dat.HD, proximity = TRUE) </span><br><span class="line">##                Type of random forest: classification</span><br><span class="line">##                      Number of trees: 500</span><br><span class="line">## No. of variables tried at each split: 4</span><br><span class="line">## </span><br><span class="line">##         OOB estimate of  error rate: 21.1%</span><br><span class="line">## Confusion matrix:</span><br><span class="line">##     0   1 class.error</span><br><span class="line">## 0 287  89   0.2367021</span><br><span class="line">## 1  83 356   0.1890661</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">index = sample(nrow(dat.HD), nrow(dat.HD), replace = FALSE)</span><br><span class="line">shuffledData &lt;- dat.HD[index,]</span><br><span class="line">dataSet &lt;- split(shuffledData, rep(1:10, each = nrow(dat.HD)/10))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Warning in split.default(x = seq_len(nrow(x)), f = f, drop = drop, ...):</span><br><span class="line">## data length is not a multiple of split variable</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">randomForest.cv &lt;- function(k = &apos;number of folds&apos;, j = &apos;mtry&apos;)&#123;</span><br><span class="line"></span><br><span class="line">vector1 = NULL</span><br><span class="line">for(i in 1:k)</span><br><span class="line">&#123;</span><br><span class="line">  validation &lt;- dataSet[[i]]</span><br><span class="line">  training &lt;- dataSet[-i]</span><br><span class="line">  trainingFrame &lt;- do.call(rbind, training)</span><br><span class="line">  randForest &lt;- randomForest(num ~ .-id-name-num, data = trainingFrame, proximity=TRUE, mtry = j)</span><br><span class="line"># help(&quot;predict.randomForest&quot;)</span><br><span class="line"># predict.randomForest is different from predict.glmnet</span><br><span class="line">  predicted &lt;- predict(randForest, newdata = validation, type = &quot;class&quot;)</span><br><span class="line">  vector1[i] = (mean(predicted!=validation$num))</span><br><span class="line">&#125;</span><br><span class="line">mean(vector1)</span><br><span class="line"></span><br><span class="line">data.frame(</span><br><span class="line">  split = randForest$mtry,</span><br><span class="line">  cverror = mean(vector1)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rf.list &lt;- list()</span><br><span class="line">for (i in 1:10) &#123;</span><br><span class="line">  rf.list[[i]] &lt;- randomForest.cv(k = 10, j = i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newfunction &lt;- function(m = &quot;&quot;)&#123;</span><br><span class="line"> for (i in 1:m) &#123;</span><br><span class="line">  rf.list[[i]] &lt;- randomForest.cv(k = 10, j = i)</span><br><span class="line"> &#125; </span><br><span class="line">do.call(rbind, rf.list)</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">newfunction(m = 3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">##    split   cverror</span><br><span class="line">## 1      1 0.2232558</span><br><span class="line">## 2      2 0.2149727</span><br><span class="line">## 3      3 0.2113408</span><br><span class="line">## 4      4 0.2173701</span><br><span class="line">## 5      5 0.2186047</span><br><span class="line">## 6      6 0.2137382</span><br><span class="line">## 7      7 0.2124318</span><br><span class="line">## 8      8 0.2111255</span><br><span class="line">## 9      9 0.2111972</span><br><span class="line">## 10    10 0.2149009</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">rf.df &lt;- do.call(rbind, rf.list)</span><br><span class="line"></span><br><span class="line"># rf.list[[1]]</span><br><span class="line"></span><br><span class="line"># rf.list[[2]]</span><br><span class="line"></span><br><span class="line"># rbind(rf.list[[1]], rf.list[[2]])</span><br><span class="line"># rbind puts data frames together</span><br><span class="line"></span><br><span class="line">rf.obj &lt;- randomForest(num ~ .-id-name-num, data = dat.HD, proximity=TRUE, mtry = 2)</span><br><span class="line"></span><br><span class="line">par(mfrow = c(1,2))</span><br><span class="line">plot(rf.df, type = &apos;b&apos;)</span><br><span class="line">points(x = rf.df$split[which.min(rf.df$cverror)], y = min(rf.df$cverror), col = &apos;red&apos;)</span><br><span class="line">varImpPlot(rf.obj)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/10/21/Project-Summary/5.png" alt="5"></p>
+<h3 id="Best-Prediction-Model"><a href="#Best-Prediction-Model" class="headerlink" title="Best Prediction Model"></a>Best Prediction Model</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#random forest: cv = 0.2016078, mtry = 3</span><br><span class="line">#classification tree: cv = 0.1988, mtry = 9</span><br><span class="line">#lasso regression: cv = 0.1695423, lambda = 0.09</span><br><span class="line">#ridge regression: cv = 0.1546994, lambda = 8</span><br><span class="line">help(&quot;data.table&quot;)</span><br><span class="line">data.table(model=c(&quot;random forest&quot;, &quot;classification tree&quot;, &quot;lasso regression&quot;, &quot;ridge regression&quot;), mtryLambda=c(&quot;3&quot;, &quot;9&quot;, &quot;0.09&quot;, &quot;8&quot;), cvError=c(&quot;0.202&quot;, &quot;0.199&quot;, &quot;0.170&quot;, &quot;0.155&quot;)) %&gt;%</span><br><span class="line">  kable( &quot;html&quot;, caption = &quot;Cross-Validation errors comparision&quot;, booktabs = T) %&gt;%</span><br><span class="line">  kable_styling(&apos;responsive&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>Cross-Validation errors comparision</p>
+<table>
+<thead>
+<tr>
+<th>model</th>
+<th>mtryLambda</th>
+<th>cvError</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>random forest</td>
+<td>3</td>
+<td>0.202</td>
+</tr>
+<tr>
+<td>classification tree</td>
+<td>9</td>
+<td>0.199</td>
+</tr>
+<tr>
+<td>lasso regression</td>
+<td>0.09</td>
+<td>0.170</td>
+</tr>
+<tr>
+<td>ridge regression</td>
+<td>8</td>
+<td>0.155</td>
+</tr>
+</tbody></table>
+<p>best model is ridge regression with lambda = 8 and cv error = 0.1546994 since it gives us the smallest cross-validation error.</p>
+
+        </div>
+    
+
+</div>
+            
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a href="https://github.com/klugjo" target="_blank" rel="noopener">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/10/21/Project-Summary/">Project-Summary</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/Fred-Fang0415" target="_blank" rel="noopener">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1289899092@qq.com" target="_blank" rel="noopener">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a href="http://www.codeblocq.com/" target="_blank" rel="noopener">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
